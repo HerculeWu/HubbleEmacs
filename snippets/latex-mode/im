@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: im
+# key: im
+# --
+$ $1 $ $0
