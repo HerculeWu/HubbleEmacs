@@ -16,5 +16,7 @@
 	     )
        )
 )
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 (provide 'company-setup)

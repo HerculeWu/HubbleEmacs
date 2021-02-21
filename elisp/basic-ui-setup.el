@@ -11,8 +11,6 @@
 
 (setq make-backup-files nil)
 
-(defun open-init-file()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
+(setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 (provide 'basic-ui-setup)

@@ -18,5 +18,7 @@
 (require 'yasnippet-setup)
 (require 'treemacs-setup)
 (require 'latex-setup)
+(require 'org-setup)
+(require 'command-log-setup)
 
 (provide 'early-init)
