@@ -20,5 +20,6 @@
 (require 'latex-setup)
 (require 'org-setup)
 (require 'command-log-setup)
+(require 'path-setup)
 
 (provide 'early-init)

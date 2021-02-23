@@ -13,4 +13,6 @@
 
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
+(global-hl-line-mode)
+
 (provide 'basic-ui-setup)
