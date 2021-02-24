@@ -7,7 +7,7 @@
   (doom-modeline-mode 1)
   (setq doom-modeline-icon (display-graphic-p))
   (setq doom-modeline-major-mode-icon t)
-  (setq doom-modeline-minor-modes t)
+  (setq doom-modeline-minor-modes nil)
   (setq doom-modeline-lsp t)
   )
 

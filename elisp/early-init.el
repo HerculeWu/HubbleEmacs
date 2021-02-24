@@ -21,5 +21,6 @@
 (require 'org-setup)
 (require 'command-log-setup)
 (require 'path-setup)
+(require 'lsp-setup)
 
 (provide 'early-init)

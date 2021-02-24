@@ -9,6 +9,8 @@
   (setq evil-split-window-below t)
   (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
   (evil-mode)
   ;; convert key map for colemake
@@ -34,6 +36,10 @@
   (define-key evil-motion-state-map (kbd "C-w i") 'evil-window-right)
   
   )
+
+(use-package evil-collection
+  :config
+  (evil-collection-init))
 
 (message "evil inited!")
 (provide 'evil-setup)
