@@ -34,7 +34,8 @@
   (define-key evil-motion-state-map (kbd "C-w n") 'evil-window-down)
   (define-key evil-motion-state-map (kbd "C-w e") 'evil-window-up)
   (define-key evil-motion-state-map (kbd "C-w i") 'evil-window-right)
-  
+  (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+  (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
   )
 
 (use-package evil-collection

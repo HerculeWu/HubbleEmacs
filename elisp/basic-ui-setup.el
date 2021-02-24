@@ -11,8 +11,6 @@
 
 (setq make-backup-files nil)
 
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
-
 (global-hl-line-mode)
 
 (provide 'basic-ui-setup)

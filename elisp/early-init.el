@@ -22,24 +22,10 @@
 		   path-setup
 		   lsp-setup
 		   magit-setup
+		   python-setup
 		   ))
 (dolist (setup setup-list)
   (require setup))
 
-;;(require 'theme)
-;;(require 'smartparens-setup)
-;;(require 'evil-setup)
-;;(require 'helm-setup)
-;;(require 'which-key-setup)
-;;(require 'general-setup)
-;;(require 'winum-setup)
-;;(require 'advance-ui-setup)
-;;(require 'yasnippet-setup)
-;;(require 'treemacs-setup)
-;;(require 'latex-setup)
-;;(require 'org-setup)
-;;(require 'command-log-setup)
-;;(require 'path-setup)
-;;(require 'lsp-setup)
 
 (provide 'early-init)
