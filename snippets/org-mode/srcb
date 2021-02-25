@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: srcb
+# key: srcb
+# --
+#+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+$0
+#+end_src

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: srca
+# key: srca
+# --
+#+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
+$0
+#+end_src
