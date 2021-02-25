@@ -1,5 +1,4 @@
-
-(load "~/.emacs.d/elisp/early-init.el")
+(load "~/.emacs.d/init-befor.el")
 
 (setq dump-exclude-packages '(helm-core
 			      auctex))
@@ -12,4 +11,3 @@
 (setq dumped-load-path load-path)
 
 (dump-emacs-portable "~/.emacs.d/emacs.pdmp")
-
