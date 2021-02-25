@@ -196,27 +196,9 @@
   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
     (use-package general :ensure t
       :config
-
-      (defun herl-open-init-file()
+      (defun herl-open-emacs-org()
 	(interactive)
-	(find-file "~/.emacs.d/init.el"))
-
-      (defun herl-open-dump-file()
-	(interactive)
-	(find-file "~/.emacs.d/dump.el"))
-
-      (defun herl-open-early-init()
-	(interactive)
-	(find-file "~/.emacs.d/elisp/early-init.el"))
-
-      (defun herl-open-after-init()
-	(interactive)
-	(find-file "~/.emacs.d/elisp/after-init.el"))
-
-      (defun herl-open-config()
-	(interactive)
-	(find-file "~/.emacs.d/config.el"))
-  
+	(find-file "~/.emacs.d/Emacs.org"))
       (general-override-mode)
       (general-evil-setup)
       (general-create-definer global-leader
@@ -234,11 +216,7 @@
 	"fs" '(save-buffer :which-key "save")
 	"fr" '(helm-recentf :which-key "recent file")
 	"fd" '(:ignore t :which-key "dot files")
-	"fdi" '(herl-open-init-file :which-key "open init.el")
-	"fdd" '(herl-open-dump-file :which-key "open dump.el")
-	"fdc" '(herl-open-config :which-key "open config.el")
-	"fde" '(herl-open-early-init :which-key "open early-init.el")
-	"fda" '(herl-open-after-init :which-key "open after-init.el")
+	"fde" '(herl-open-emacs-org :which-key "open Emacs.org")
 	"w" '(:ignore t :which-key "window")
 	"ww" '(other-window :which-key "other window")
 	"wh" '(evil-window-left :which-key "window below")
