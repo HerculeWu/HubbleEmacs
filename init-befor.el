@@ -52,20 +52,8 @@
   (smartparens-global-mode)
   )
 
-(use-package evil
-  :ensure t ;; install the evil package if not installed
-  :init ;; tweak evil's configuration before loading it
-  (setq evil-search-module 'evil-search)
-  (setq evil-ex-complete-emacs-commands nil)
-  (setq evil-vsplit-window-right t)
-  (setq evil-split-window-below t)
-  (setq evil-shift-round nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  :config ;; tweak evil after loading it
-  (evil-mode)
-  ;; convert key map for colemake
+(defun herl/evil-colemak-setup ()
+  (interactive)
   (define-key evil-motion-state-map (kbd "h") 'evil-backward-char)
   (define-key evil-motion-state-map (kbd "n") 'evil-next-visual-line)
   (define-key evil-motion-state-map (kbd "e") 'evil-previous-visual-line)
@@ -88,6 +76,23 @@
   (define-key evil-motion-state-map (kbd "C-w i") 'evil-window-right)
   (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
   (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
+  )
+
+(use-package evil
+  :ensure t ;; install the evil package if not installed
+  :init ;; tweak evil's configuration before loading it
+  (setq evil-search-module 'evil-search)
+  (setq evil-ex-complete-emacs-commands nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (setq evil-shift-round nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  :config ;; tweak evil after loading it
+  (evil-mode)
+  ;; convert key map for colemake
+  (herl/evil-colemak-setup)
   )
 
 (use-package evil-collection
@@ -302,6 +307,9 @@
 
 (message "cat is with you now!")
 
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 (use-package org
   :config
   (setq org-ellipsis " ▼")
@@ -319,6 +327,7 @@
 	    (progn
 	      (evil-org-mode)
 	      (org-bullets-mode)
+	      (herl/evil-colemak-setup)
 	      (major-leader 'org-mode-map
 		"," 'org-ctrl-c-ctrl-c
 		"*" 'org-ctrl-c-star
@@ -377,6 +386,14 @@
 		"B z" 'org-babel-switch-to-session-with-code
 		)
 	      )))
+
+(defun herl/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+	visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . herl/org-mode-visual-fill))
 
 (defun org-babel-auto-tangle ()
   (when (string-equal (buffer-file-name)

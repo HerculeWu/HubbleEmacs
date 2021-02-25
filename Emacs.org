@@ -3,7 +3,7 @@
   - emacs configuration from Hercule
   - When change some config in this file, just save and org-babel will tangle all code block.
   - To apply the configuration save this file and restart emacs.
-  - Put the configuration that can dumped in init-befor.el block, and others on init-after.el.
+  - Put the configuration that can be dumped in init-befor.el block, and others on init-after.el.
   - To apply the configuration change for dumping, redump emacs
 * Leader keys
   Leader keys which used for general.el keybindings
@@ -114,21 +114,10 @@
    #+end_src
 ** evil
    initialize evil mode. Remap key to colemake keyboard layout
+   - function to convert keymap for colemake
    #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
-     (use-package evil
-       :ensure t ;; install the evil package if not installed
-       :init ;; tweak evil's configuration before loading it
-       (setq evil-search-module 'evil-search)
-       (setq evil-ex-complete-emacs-commands nil)
-       (setq evil-vsplit-window-right t)
-       (setq evil-split-window-below t)
-       (setq evil-shift-round nil)
-       (setq evil-want-C-u-scroll t)
-       (setq evil-want-integration t)
-       (setq evil-want-keybinding nil)
-       :config ;; tweak evil after loading it
-       (evil-mode)
-       ;; convert key map for colemake
+     (defun herl/evil-colemak-setup ()
+       (interactive)
        (define-key evil-motion-state-map (kbd "h") 'evil-backward-char)
        (define-key evil-motion-state-map (kbd "n") 'evil-next-visual-line)
        (define-key evil-motion-state-map (kbd "e") 'evil-previous-visual-line)
@@ -151,6 +140,24 @@
        (define-key evil-motion-state-map (kbd "C-w i") 'evil-window-right)
        (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
        (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
+       )
+   #+end_src
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (use-package evil
+       :ensure t ;; install the evil package if not installed
+       :init ;; tweak evil's configuration before loading it
+       (setq evil-search-module 'evil-search)
+       (setq evil-ex-complete-emacs-commands nil)
+       (setq evil-vsplit-window-right t)
+       (setq evil-split-window-below t)
+       (setq evil-shift-round nil)
+       (setq evil-want-C-u-scroll t)
+       (setq evil-want-integration t)
+       (setq evil-want-keybinding nil)
+       :config ;; tweak evil after loading it
+       (evil-mode)
+       ;; convert key map for colemake
+       (herl/evil-colemak-setup)
        )
 
      (use-package evil-collection
@@ -422,6 +429,12 @@
 
      (message "cat is with you now!")
    #+end_src 
+** rainbow-delimiters
+   colorful parents
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (use-package rainbow-delimiters
+       :hook (prog-mode . rainbow-delimiters-mode))
+   #+end_src
 ** company
    Initialize company.
    - delay 0s
@@ -514,6 +527,7 @@
 		 (progn
 		   (evil-org-mode)
 		   (org-bullets-mode)
+		   (herl/evil-colemak-setup)
 		   (major-leader 'org-mode-map
 		     "," 'org-ctrl-c-ctrl-c
 		     "*" 'org-ctrl-c-star
@@ -573,6 +587,16 @@
 		     )
 		   )))
    #+end_src 
+   - centre text for org mode
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (defun herl/org-mode-visual-fill ()
+       (setq visual-fill-column-width 100
+	     visual-fill-column-center-text t)
+       (visual-fill-column-mode 1))
+
+     (use-package visual-fill-column
+       :hook (org-mode . herl/org-mode-visual-fill))
+   #+end_src
    - auto tangle when save this file
    #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
      (defun org-babel-auto-tangle ()
@@ -646,6 +670,7 @@
        (python-shell-interpreter "python3"))
      (use-package py-isort)
    #+end_src
+   
 * Garbage Collection
   - set gc threshold to 100MB (800KB default)
   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
