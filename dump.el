@@ -1,6 +1,7 @@
 (load "~/.emacs.d/init-befor.el")
 
 (setq dump-exclude-packages '(helm-core
+			      vterm
 			      auctex))
 
 (dolist (package package-activated-list)

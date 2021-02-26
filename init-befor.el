@@ -310,6 +310,20 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package dired
+  :ensure nil)
+(use-package all-the-icons-dired)
+
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode +1)
+  (custom-set-variables
+   '(git-gutter:update-interval 1)
+   '(git-gutter:added-sign "+")
+   '(git-gutter:deleted-sign "-")
+   '(git-gutter:modified-sign "~")
+   ))
+
 (use-package org
   :config
   (setq org-ellipsis " ▼")
@@ -454,3 +468,13 @@
   :custom
   (python-shell-interpreter "python3"))
 (use-package py-isort)
+
+(use-package julia-mode)
+
+(quelpa '(lsp-julia :fetcher github
+		    :repo "non-Jedi/lsp-julia"
+		    :files (:defaults "languageserver")))
+
+(add-hook 'julia-mode-hook #'lsp)
+
+(message "Julia inited!")

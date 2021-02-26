@@ -499,9 +499,27 @@
 
      (message "dashboard inited!")
    #+end_src
+** dired
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (use-package dired
+       :ensure nil)
+     (use-package all-the-icons-dired)
+   #+end_src
+** git gutter
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (use-package git-gutter
+       :config
+       (global-git-gutter-mode +1)
+       (custom-set-variables
+	'(git-gutter:update-interval 1)
+	'(git-gutter:added-sign "+")
+	'(git-gutter:deleted-sign "-")
+	'(git-gutter:modified-sign "~")
+	))
+   #+end_src
 * Major Modes Setup
  Customize major modes.
- All things in this section can be dumped.
+ Most things in this section can be dumped.
 ** Org
    Initialize org-mode
    - ellipsis symbol
@@ -670,7 +688,41 @@
        (python-shell-interpreter "python3"))
      (use-package py-isort)
    #+end_src
-   
+** Julia
+   Initialize Julia
+   - julia major mode
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (use-package julia-mode)
+   #+end_src
+   - julia lsp support
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (quelpa '(lsp-julia :fetcher github
+			 :repo "non-Jedi/lsp-julia"
+			 :files (:defaults "languageserver")))
+   #+end_src
+   - hook to start server
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+     (add-hook 'julia-mode-hook #'lsp)
+
+     (message "Julia inited!")
+   #+end_src
+** vterm
+   This can not be dumped
+   - initialize vterm
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
+     (use-package vterm
+       :config
+       (setq vterm-max-scrollback 10000))
+   #+end_src
+   - add keybindings
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
+     (global-leader
+       "a" '(:ignore t :wk "app")
+       "as" '(:ignore t :wk "shell")
+       "ase" '(eshell :wk "eshell")
+       "asv" '(vterm :wk "vterm")
+       )
+   #+end_src
 * Garbage Collection
   - set gc threshold to 100MB (800KB default)
   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
@@ -706,6 +758,7 @@
     (load "~/.emacs.d/init-befor.el")
 
     (setq dump-exclude-packages '(helm-core
+				  vterm
 				  auctex))
 
     (dolist (package package-activated-list)

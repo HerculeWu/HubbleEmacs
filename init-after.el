@@ -59,6 +59,17 @@
 
 (message "dashboard inited!")
 
+(use-package vterm
+  :config
+  (setq vterm-max-scrollback 10000))
+
+(global-leader
+  "a" '(:ignore t :wk "app")
+  "as" '(:ignore t :wk "shell")
+  "ase" '(eshell :wk "eshell")
+  "asv" '(vterm :wk "vterm")
+  )
+
 (setq gc-cons-threshold 100000000)
 
 (setq read-process-output-max (* 1024 1024))
