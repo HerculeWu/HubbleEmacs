@@ -478,3 +478,12 @@
 (add-hook 'julia-mode-hook #'lsp)
 
 (message "Julia inited!")
+
+(global-leader
+  "a" '(:ignore t :wk "app")
+  "as" '(:ignore t :wk "shell")
+  "ase" '(eshell :wk "eshell")
+  "asv" '(vterm :wk "vterm")
+  )
+
+(message "vterm inited")

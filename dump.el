@@ -1,4 +1,4 @@
-(load "~/.emacs.d/init-befor.el")
+(load "~/.emacs.d/init-before.el")
 
 (setq dump-exclude-packages '(helm-core
 			      vterm

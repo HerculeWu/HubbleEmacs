@@ -3,11 +3,11 @@
   - emacs configuration from Hercule
   - When change some config in this file, just save and org-babel will tangle all code block.
   - To apply the configuration save this file and restart emacs.
-  - Put the configuration that can be dumped in init-befor.el block, and others on init-after.el.
+  - Put the configuration that can be dumped in init-before.el block, and others on init-after.el.
   - To apply the configuration change for dumping, redump emacs
 * Leader keys
   Leader keys which used for general.el keybindings
-  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
     (defvar normal-global-leader-key "SPC")
     (defvar non-normal-leader-key "<f18>")
     (defvar normal-major-mode-leader-key ",")
@@ -22,7 +22,7 @@
   - install *auctex* (this package provide not a feature called auctex, so can not be required, and with use-package not work.
     If it is already installed, emacs just give a waring message, and do nothing).
   This setup will load in dumping.
-  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
     (require 'package)
     (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
     (package-initialize)
@@ -74,7 +74,7 @@
 
 * Theme Setup
   Initialize doom themes, load one of them.
-  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
     (use-package doom-themes
       :ensure t
       :config
@@ -105,7 +105,7 @@
   But still some modes can not be dump (like company mode).
 ** Smartparens
    Turn on smartparens global
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package smartparens
        :config
        (require 'smartparens-config)
@@ -115,7 +115,7 @@
 ** evil
    initialize evil mode. Remap key to colemake keyboard layout
    - function to convert keymap for colemake
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (defun herl/evil-colemak-setup ()
        (interactive)
        (define-key evil-motion-state-map (kbd "h") 'evil-backward-char)
@@ -142,7 +142,7 @@
        (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
        )
    #+end_src
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package evil
        :ensure t ;; install the evil package if not installed
        :init ;; tweak evil's configuration before loading it
@@ -168,7 +168,7 @@
    #+end_src
 ** helm
    Initialize helm. Use helm-M-x, helm-find-files, helm-mini and helm-show-kill-ring
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package helm
        :config
        (require 'helm-config)
@@ -188,7 +188,7 @@
    Initialize which-key
    - delay 0.5s
    - turn on global
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package which-key
        :config
        (which-key-mode)
@@ -200,7 +200,7 @@
   Initialize general.el.
   - make global and major key definer
   - make some basic keybindings
-  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+  #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
     (use-package general :ensure t
       :config
       (defun herl-open-emacs-org()
@@ -249,7 +249,7 @@
    Initialize winum
    - keybindings with general
    - turn on winum-mode after startup
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package winum
        :config
        (winum-mode)
@@ -272,7 +272,7 @@
    Initialize treemacs.
    - evil integration
    - keybindings with general (open, close, switch to treeview)
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package treemacs-evil
        :config
        (defun herl-close-tree ()
@@ -297,7 +297,7 @@
    Initialize yasnippet
    - use github rep (support for regexp as trigger)
    - turn on global
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (quelpa '(yasnippet :fetcher git :url "https://github.com/HerculeWu/yasnippet.git"))
      (yas-global-mode)
 
@@ -307,7 +307,7 @@
    Initialize magit mode
    - keybindings with general
    - keybindings for edit commit
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package magit)
      (global-leader
        "g" '(:ignore t :which-key "git")
@@ -337,7 +337,7 @@
    - turn on show doc
    - show doc at point
    - global keybinding with leader key SPC-l
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package lsp-mode)
      (use-package lsp-ui :commands lsp-ui-mode)
      (use-package helm-lsp :commands helm-lsp-workspace-symbol)
@@ -399,7 +399,7 @@
    highlight indent
    - turn on in progn-mode
    - use bitmap method
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package highlight-indent-guides
        :ensure t
        :hook (prog-mode . highlight-indent-guides-mode)
@@ -410,7 +410,7 @@
    #+end_src
 ** info-colors
    Show info message with colors
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package info-colors 
        :ensure t 
        :hook ('Info-selection-hook . 'info-colors-fontify-node))
@@ -419,7 +419,7 @@
    #+end_src
 ** nyan-mode
    Cat will tall me when I can take a break!
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package nyan-mode
        :ensure t
        :hook (after-init . nyan-mode)
@@ -431,7 +431,7 @@
    #+end_src 
 ** rainbow-delimiters
    colorful parents
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package rainbow-delimiters
        :hook (prog-mode . rainbow-delimiters-mode))
    #+end_src
@@ -500,13 +500,13 @@
      (message "dashboard inited!")
    #+end_src
 ** dired
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package dired
        :ensure nil)
      (use-package all-the-icons-dired)
    #+end_src
 ** git gutter
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package git-gutter
        :config
        (global-git-gutter-mode +1)
@@ -527,7 +527,7 @@
    - evil integration
    - bullets
    - keybindings with general.el
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package org
        :config
        (setq org-ellipsis " ▼")
@@ -606,7 +606,7 @@
 		   )))
    #+end_src 
    - centre text for org mode
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (defun herl/org-mode-visual-fill ()
        (setq visual-fill-column-width 100
 	     visual-fill-column-center-text t)
@@ -616,7 +616,7 @@
        :hook (org-mode . herl/org-mode-visual-fill))
    #+end_src
    - auto tangle when save this file
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (defun org-babel-auto-tangle ()
        (when (string-equal (buffer-file-name)
 			   (expand-file-name "~/.emacs.d/Emacs.org"))
@@ -632,13 +632,13 @@
    - auto save
    - parse self (used for multi file project)
    - no auto master file
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (setq TeX-auto-save t)
      (setq TeX-parse-self t)
      (setq-default TeX-master nil)
    #+end_src
    - keybandings with general
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (defun latex/change-env ()
        (interactive)
        (LaTeX-environment t))
@@ -681,7 +681,7 @@
    #+end_src
 ** python
    Initialize python
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package python-mode
        :hook (python-mode . lsp)
        :custom
@@ -691,17 +691,17 @@
 ** Julia
    Initialize Julia
    - julia major mode
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (use-package julia-mode)
    #+end_src
    - julia lsp support
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (quelpa '(lsp-julia :fetcher github
 			 :repo "non-Jedi/lsp-julia"
 			 :files (:defaults "languageserver")))
    #+end_src
    - hook to start server
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (add-hook 'julia-mode-hook #'lsp)
 
      (message "Julia inited!")
@@ -715,13 +715,15 @@
        (setq vterm-max-scrollback 10000))
    #+end_src
    - add keybindings
-   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
      (global-leader
        "a" '(:ignore t :wk "app")
        "as" '(:ignore t :wk "shell")
        "ase" '(eshell :wk "eshell")
        "asv" '(vterm :wk "vterm")
        )
+
+     (message "vterm inited")
    #+end_src
 * Garbage Collection
   - set gc threshold to 100MB (800KB default)
@@ -755,7 +757,7 @@
   - save load path in dumped-load-path
   - dump!
   #+begin_src emacs-lisp :tangle ~/.emacs.d/dump.el
-    (load "~/.emacs.d/init-befor.el")
+    (load "~/.emacs.d/init-before.el")
 
     (setq dump-exclude-packages '(helm-core
 				  vterm
@@ -797,11 +799,11 @@
       )
   #+end_src
   - when not start from dump file
-    - load init-befor.el
+    - load init-before.el
     - load init-after.el
   #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
     (unless dumped-load-path
-      (load "~/.emacs.d/init-befor.el")
+      (load "~/.emacs.d/init-before.el")
       (load "~/.emacs.d/init-after.el"))
   #+end_src
   - load auto custom variables

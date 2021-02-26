@@ -12,7 +12,7 @@
   )
 
 (unless dumped-load-path
-  (load "~/.emacs.d/init-befor.el")
+  (load "~/.emacs.d/init-before.el")
   (load "~/.emacs.d/init-after.el"))
 
 (when (file-exists-p custom-file)
