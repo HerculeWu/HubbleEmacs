@@ -487,3 +487,24 @@
   )
 
 (message "vterm inited")
+
+(defun herl/open-google ()
+  (interactive)
+  (xwidget-webkit-browse-url "https://www.google.com" t)
+  )
+(global-leader
+  "aw" '(:ignore t :wk "webkit")
+  "awg" '(herl/open-google :wk "google")
+  "awu" '(xwidget-webkit-browse-url :wk "open url")
+  )
+
+(defun herl/webkit-open-local-file (fpath)
+  (interactive "fEnter file path: ")
+  (when (member (substring fpath -4 nil) '("html" ".pdf"))
+    (xwidget-webkit-browse-url
+     (concat "file://" (expand-file-name fpath)))
+    )
+  )
+
+(global-leader
+  "awf" '(herl/webkit-open-local-file :wk "open loacl html"))

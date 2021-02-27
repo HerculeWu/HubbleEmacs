@@ -2,6 +2,6 @@
 # name: srcb
 # key: srcb
 # --
-#+begin_src emacs-lisp :tangle ~/.emacs.d/init-befor.el
+#+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
 $0
 #+end_src

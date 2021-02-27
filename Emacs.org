@@ -725,6 +725,32 @@
 
      (message "vterm inited")
    #+end_src
+** xwidget webkit
+   - open google
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
+     (defun herl/open-google ()
+       (interactive)
+       (xwidget-webkit-browse-url "https://www.google.com" t)
+       )
+     (global-leader
+       "aw" '(:ignore t :wk "webkit")
+       "awg" '(herl/open-google :wk "google")
+       "awu" '(xwidget-webkit-browse-url :wk "open url")
+       )
+   #+end_src
+   - open local file
+   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-before.el
+     (defun herl/webkit-open-local-file (fpath)
+       (interactive "fEnter file path: ")
+       (when (member (substring fpath -4 nil) '("html" ".pdf"))
+	 (xwidget-webkit-browse-url
+	  (concat "file://" (expand-file-name fpath)))
+	 )
+       )
+
+     (global-leader
+       "awf" '(herl/webkit-open-local-file :wk "open loacl html"))
+   #+end_src
 * Garbage Collection
   - set gc threshold to 100MB (800KB default)
   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
@@ -744,8 +770,8 @@
       (run-with-idle-timer 15 t
 			   'garbage-collect))
   #+end_src
-* Turn on xwidget webkit
-  When not start from dump file, this make no sens
+* xwidget webkit
+  - enable webkit (When not start from dump file, this make no sens)
   #+begin_src emacs-lisp :tangle ~/.emacs.d/init-after.el
     (setq xwidget-webkit-enable-plugins t)
   #+end_src
