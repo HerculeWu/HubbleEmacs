@@ -1,0 +1,5 @@
+#+title: Hercule's .emacs.d
+* Introduction
+  This rep is my personal emacs configuration.
+  I use [[./Emacs.org][Emacs.org]] to configurate every thing for my emacs. You can read it for more details.
+  This configuration is made for someone who want to start emacs from a dump file.

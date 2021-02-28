@@ -1,6 +1,5 @@
 #+title: Emacs Config
 * Tips for use
-  - emacs configuration from Hercule
   - When change some config in this file, just save and org-babel will tangle all code block.
   - To apply the configuration save this file and restart emacs.
   - Put the configuration that can be dumped in init-before.el block, and others on init-after.el.
@@ -349,6 +348,7 @@
      (setq lsp-ui-sideline-show-hover t)
      (setq lsp-ui-doc-enable t)
      (setq lsp-ui-doc-position 'at-point)
+     (setq lsp-restart 'ignore)
      (global-leader
        "l" '(:ignore t :which-key "lsp")
        "l=" '(:ignore t :which-key "format")

@@ -238,6 +238,7 @@
 (setq lsp-ui-sideline-show-hover t)
 (setq lsp-ui-doc-enable t)
 (setq lsp-ui-doc-position 'at-point)
+(setq lsp-restart 'ignore)
 (global-leader
   "l" '(:ignore t :which-key "lsp")
   "l=" '(:ignore t :which-key "format")
