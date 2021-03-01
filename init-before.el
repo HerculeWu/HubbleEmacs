@@ -322,6 +322,14 @@
    '(git-gutter:modified-sign "~")
    ))
 
+(use-package helm-posframe
+  :config
+  (setq helm-posframe-poshandler 'posframe-poshandler-frame-center
+	helm-posframe-height 20
+	helm-posframe-width (round (* (frame-width) 0.49))
+	helm-posframe-parameters '((internal-border-width . 10)))
+  (helm-posframe-enable))
+
 (use-package org
   :config
   (setq org-ellipsis " ▼")
