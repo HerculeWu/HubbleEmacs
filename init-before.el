@@ -69,7 +69,9 @@
   (define-key evil-normal-state-map (kbd "X") 'evil-delete-line)
   (define-key evil-normal-state-map (kbd "z") 'evil-undo)
   (define-key evil-normal-state-map (kbd "u") 'evil-forward-word-begin)
+  (define-key evil-visual-state-map (kbd "u") 'evil-forward-word-begin)
   (define-key evil-normal-state-map (kbd "l") 'evil-backward-word-begin)
+  (define-key evil-visual-state-map (kbd "l") 'evil-backward-word-begin)
   (define-key evil-motion-state-map (kbd "C-w h") 'evil-window-left)
   (define-key evil-motion-state-map (kbd "C-w n") 'evil-window-down)
   (define-key evil-motion-state-map (kbd "C-w e") 'evil-window-up)
@@ -322,13 +324,7 @@
    '(git-gutter:modified-sign "~")
    ))
 
-(use-package helm-posframe
-  :config
-  (setq helm-posframe-poshandler 'posframe-poshandler-frame-center
-	helm-posframe-height 20
-	helm-posframe-width (round (* (frame-width) 0.49))
-	helm-posframe-parameters '((internal-border-width . 10)))
-  (helm-posframe-enable))
+(use-package helm-posframe)
 
 (use-package org
   :config
@@ -506,7 +502,7 @@
 
 (defun herl/webkit-open-local-file (fpath)
   (interactive "fEnter file path: ")
-  (when (member (substring fpath -4 nil) '("html" ".pdf"))
+  (when (member (substring fpath -4 nil) '("html" ".pdf" ".mp4"))
     (xwidget-webkit-browse-url
      (concat "file://" (expand-file-name fpath)))
     )
